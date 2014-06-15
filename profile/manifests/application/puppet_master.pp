@@ -4,9 +4,11 @@
 #
 # Puppet module :
 #   * puppetlabs/puppetdb
+#   * zack/r10k
 #
-class profile::application::puppetdb_server {
+class profile::application::puppet_master {
   include profile::base
 
-  include ::puppetdb::server
+  include ::puppetdb::master::config
+  include ::r10k
 }
