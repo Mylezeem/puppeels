@@ -14,5 +14,6 @@ class profile::logging::server::fluentd (
   include ::java
   include ::elasticsearch
   include ::kibana3
+  include ::apache
 
 }
