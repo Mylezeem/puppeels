@@ -13,5 +13,6 @@ class profile::logging::server::fluentd (
   include profile::logging::agent::fluentd
   include ::java
   include ::elasticsearch
+  include ::kibana3
 
 }
