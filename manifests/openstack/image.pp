@@ -2,10 +2,10 @@ class profile::openstack::image(
   $registry_enabled = true,
 ) {
 
-  include ::cloud::image::api
+  include ::profile::openstack::image::api
 
   if $registry_enabled {
-    include ::cloud::image::registry
+    include ::profile::openstack::image::registry
   }
 
 }
