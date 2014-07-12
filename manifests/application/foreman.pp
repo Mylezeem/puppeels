@@ -10,5 +10,7 @@ class profile::application::foreman {
 
   include ::r10k
   include ::tftp
+  include ::puppet
   include ::foreman
+  include ::foreman_proxy
 }
