@@ -10,7 +10,6 @@ class profile::logging::agent::fluentd (
   $matches = {},
   $plugins = {},
 ) {
-  include profile::base
   include ::fluentd
 
   ensure_resource('fluentd::configfile', keys($sources))
