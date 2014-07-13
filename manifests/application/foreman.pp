@@ -3,7 +3,11 @@
 # License: ApacheV2
 #
 # Puppet module :
-#   * theforeman/foreman
+#   mod 'theforeman/foreman'
+#   mod 'theforeman/foremam_proxy'
+#   mod 'theforeman/puppet'
+#   mod 'theforeman/tftp'
+#   mod 'zack/r10k'
 #
 class profile::application::foreman {
   include profile::base
