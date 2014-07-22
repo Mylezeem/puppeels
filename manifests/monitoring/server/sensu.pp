@@ -22,6 +22,10 @@ class profile::monitoring::server::sensu (
   $manage_redis              = true,
 ) {
 
+  # TODO (spredzy): Find a nicer way to deal with dependencies
+  Service['rabbitmq-server'] -> Class['sensu::package']
+  Service['redis-6379'] -> Service['sensu-api'] -> Service['sensu-server']
+
   include profile::base
   include profile::monitoring::agent::sensu
 
