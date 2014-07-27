@@ -23,6 +23,10 @@ With hiera, one directly specifies parameters for the underlying classes.
 
 * [Apache](http://httpd.apache.org)
 
+#### High Availability
+
+* [HAProxy](http://www.haproxy.org) + [KeepAlived](http://www.keepalived.org)
+
 #### Monitoring
 
 * [Sensu](http://sensuapp.org)

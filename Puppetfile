@@ -54,6 +54,12 @@ mod 'puppetlabs/rabbitmq'
 mod 'thomasvandoren/redis'
 
 #
+# profile::highavailability::haproxy
+#
+mod 'puppetlabs/haproxy'
+mod 'arioch/keepalived'
+
+#
 # profile::application::foreman
 #
 mod 'theforeman/foreman'
