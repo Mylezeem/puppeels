@@ -15,5 +15,6 @@ class profile::logging::server::fluentd (
   include ::elasticsearch
   include ::kibana3
   include ::apache
+  elasticsearch::instance { 'fluentd' : }
 
 }
