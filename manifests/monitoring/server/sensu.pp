@@ -11,6 +11,7 @@
 class profile::monitoring::server::sensu (
   $checks                    = {},
   $handlers                  = {},
+  $plugins                   = {},
   $proxy_dashboard           = true,
   $dashboard_servername      = 'monitor.example.com',
   $vhost_configuration       = {},
@@ -58,6 +59,7 @@ class profile::monitoring::server::sensu (
 
   create_resources('sensu::check', $checks)
   create_resources('sensu::handler', $handlers)
+  create_resources('sensu::plugin', $plugins)
 
 }
 
