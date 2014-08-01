@@ -17,4 +17,5 @@ class profile::base {
   include ::ntp
   include ::sudo
   include ::sudo::configs
+  include ::augeasproviders
 }

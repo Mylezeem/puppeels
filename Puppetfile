@@ -71,6 +71,7 @@ mod 'theforeman/dhcp'
 mod 'theforeman/foreman_proxy'
 
 
+mod 'domcleal/augeasproviders'
 mod 'puppetlabs/apache'
 mod 'puppetlabs/stdlib'
 mod 'puppetlabs/concat'
