@@ -3,14 +3,15 @@
 # License: ApacheV2
 #
 # Puppet module :
-#   * puppetlabs/haproxy
-#   * arioch/keepalived
+#   mod 'puppetlabs/haproxy'
+#   mod 'arioch/keepalived'
 #
 class profile::highavailability::haproxy (
   $keepalived_enable         = false,
   $keepalived_vrrp_instances = {},
   $keepalived_vrrp_scripts   = {},
   $haproxy_listens           = {},
+  $haproxy_balancermembers   = {},
 ) {
 
   include profile::base
@@ -23,5 +24,6 @@ class profile::highavailability::haproxy (
 
   include ::haproxy
   create_resources('haproxy::listen', $haproxy_listens)
+  create_resources('haproxy::balancermember', $haproxy_balancermembers)
 
 }
