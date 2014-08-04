@@ -7,6 +7,8 @@ Those profiles aims to get the best out of the role profile paradigm.
 It is meant to be used with hiera. Profiles themselves tend to have really few or none parameters.
 With hiera, one directly specifies parameters for the underlying classes.
 
+A set of example on how to use those profiles is availabe on the [puppeels-example](https://github.com/Mylezeem/puppeels-example) repository.
+
 ###Current Profiles
 
 #### Application
