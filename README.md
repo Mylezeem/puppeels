@@ -14,6 +14,7 @@ A set of example on how to use those profiles is availabe on the [puppeels-examp
 #### Application
 
 * [Foreman](http://theforeman.org/)
+* [MediaWiki](http://www.mediawiki.org/)
 * [PuppetDB](http://docs.puppetlabs.com/puppetdb/)
 
 #### Database
