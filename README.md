@@ -22,9 +22,10 @@ A set of example on how to use those profiles is availabe on the [puppeels-examp
 * [MariaDB](http://mariadb.org)
 * [PostgreSQL](http://www.postgresql.org)
 
-#### Webservers
+#### Webserver
 
 * [Apache](http://httpd.apache.org)
+* [Tomcat](http://tomcat.apache.org)
 
 #### High Availability
 

@@ -70,9 +70,19 @@ mod 'theforeman/dns'
 mod 'theforeman/dhcp'
 mod 'theforeman/foreman_proxy'
 
+#
+# profile::webserver::apache
+#
+mod 'puppetlabs/apache'
+
+#
+# profile::webserver::tomcat
+#
+mod 'puppetlabs/java'
+mod 'puppetlabs/tomcat'
+mod 'yguenane/jpackage'
 
 mod 'domcleal/augeasproviders'
-mod 'puppetlabs/apache'
 mod 'puppetlabs/stdlib'
 mod 'puppetlabs/concat'
 mod 'puppetlabs/xinetd'
