@@ -20,7 +20,7 @@ class profile::webserver::tomcat (
   $valves_config     = {},
 ) {
 
-  Tomcat::Instance <| |> Tomcat::Setenv::Entry <| |> -> Tomcat::Service <| |> -> Tomcat::War <| |>
+  Tomcat::Instance <| |> -> Tomcat::Setenv::Entry <| |> -> Tomcat::Service <| |> -> Tomcat::War <| |>
 
   include profile::base
 
