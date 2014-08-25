@@ -11,15 +11,18 @@
 class profile::application::jenkins (
   $install_jjb   = false,
   $jenkins_home  = '/var/lib/jenkins',
-  $war_source    = 'http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war',
+  $branch        = 'war-stable',
   $version       = 'lastest',
   $catalina_base = '/var/lib/tomcat',
-  $proxy         = true,
+  $proxy         = false,
   $proxy_vhost   = {},
 ) {
 
   include profile::base
   include profile::webserver::tomcat
+
+  $war_source = "http://mirrors.jenkins-ci.org/${branch}/${version}/jenkins.war",
+
 
   file { $jenkins_home :
     ensure  => directory,
