@@ -12,6 +12,7 @@ class profile::webserver::tomcat (
   $instances         = {},
   $services          = {},
   $wars              = {},
+  $entries_config    = {},
   $servers_config    = {},
   $connectors_config = {},
   $engines_config    = {},
@@ -20,7 +21,7 @@ class profile::webserver::tomcat (
   $valves_config     = {},
 ) {
 
-  Tomcat::Instance <| |> -> Tomcat::Setenv::Entry <| |> -> Tomcat::Service <| |> -> Tomcat::War <| |>
+  Tomcat::Instance <| |> -> Tomcat::Config::Entry <| |> -> Tomcat::Setenv::Entry <| |> -> Tomcat::Service <| |> -> Tomcat::War <| |>
 
   include profile::base
 
@@ -34,6 +35,7 @@ class profile::webserver::tomcat (
   create_resources('tomcat::instance', $instances)
   create_resources('tomcat::service', $services)
   create_resources('tomcat::war', $wars)
+  create_resources('tomcat::config::entry', $entries_config)
   create_resources('tomcat::config::server', $servers_config)
   create_resources('tomcat::config::server::connector', $connectors_config)
   create_resources('tomcat::config::server::engine', $engines_config)
