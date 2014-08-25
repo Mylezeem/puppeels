@@ -6,9 +6,16 @@
 #   * puppetlabs/puppetdb
 #   * zack/r10k
 #
-class profile::application::puppet_master {
+class profile::application::puppet_master (
+  $puppetdb_enable = false,
+) {
   include profile::base
 
-  include ::puppetdb::master::config
+  include ::puppet
   include ::r10k
+
+  if $puppetdb_enable {
+    include ::puppetdb::master::config
+  }
+
 }
