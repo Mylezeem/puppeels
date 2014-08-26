@@ -28,7 +28,7 @@ class profile::webserver::tomcat (
   Tomcat::Config::Server::Engine <| |> ~> Tomcat::Service <| |>
   Tomcat::Config::Server::Host <| |> ~> Tomcat::Service <| |>
   Tomcat::Config::Server::Service <| |> ~> Tomcat::Service <| |>
-  Tomcat::Config::Server::Valvle <| |> ~> Tomcat::Service <| |>
+  Tomcat::Config::Server::Valve <| |> ~> Tomcat::Service <| |>
 
   include profile::base
 
