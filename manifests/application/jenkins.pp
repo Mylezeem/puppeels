@@ -12,8 +12,8 @@ class profile::application::jenkins (
   $install_jjb   = false,
   $jenkins_home  = '/var/lib/jenkins',
   $branch        = 'war-stable',
-  $version       = 'lastest',
-  $catalina_base = '/var/lib/tomcat',
+  $version       = 'latest',
+  $catalina_base = '/usr/share/tomcat',
   $proxy         = false,
   $proxy_vhost   = {},
 ) {
@@ -21,8 +21,12 @@ class profile::application::jenkins (
   include profile::base
   include profile::webserver::tomcat
 
-  $war_source = "http://mirrors.jenkins-ci.org/${branch}/${version}/jenkins.war",
+  $war_source = "http://mirrors.jenkins-ci.org/${branch}/${version}/jenkins.war"
 
+  $config_file = $::osfamily ? {
+    'Debian' => '/etc/default/tomcat',
+    default  => '/etc/sysconfig/tomcat',
+  }
 
   file { $jenkins_home :
     ensure  => directory,
@@ -33,7 +37,8 @@ class profile::application::jenkins (
   }
     
   tomcat::setenv::entry { 'JENKINS_HOME' :
-    value => $jenkins_home,
+    value       => $jenkins_home,
+    config_file => $config_file,
   }
 
   tomcat::war { 'jenkins.war' :
