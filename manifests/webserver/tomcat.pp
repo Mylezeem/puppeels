@@ -21,7 +21,14 @@ class profile::webserver::tomcat (
   $valves_config     = {},
 ) {
 
-  Tomcat::Instance <| |> -> Tomcat::Setenv::Entry <| |> -> Tomcat::Service <| |> -> Tomcat::War <| |>
+  Tomcat::Instance <| |> -> Tomcat::Service <| |> -> Tomcat::War <| |>
+
+  Tomcat::Setenv::Entry <| |> ~> Tomcat::Service <| |>
+  Tomcat::Config::Server::Connector <| |> ~> Tomcat::Service <| |>
+  Tomcat::Config::Server::Engine <| |> ~> Tomcat::Service <| |>
+  Tomcat::Config::Server::Host <| |> ~> Tomcat::Service <| |>
+  Tomcat::Config::Server::Service <| |> ~> Tomcat::Service <| |>
+  Tomcat::Config::Server::Valvle <| |> ~> Tomcat::Service <| |>
 
   include profile::base
 
