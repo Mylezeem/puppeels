@@ -9,13 +9,14 @@
 #   mod 'darin/zypprepo'
 #
 class profile::application::jenkins (
-  $install_jjb   = false,
-  $jenkins_home  = '/var/lib/jenkins',
-  $branch        = 'war-stable',
-  $version       = 'latest',
-  $catalina_base = '/usr/share/tomcat',
-  $proxy         = false,
-  $proxy_vhost   = {},
+  $install_jjb    = false,
+  $jenkins_home   = '/var/lib/jenkins',
+  $branch         = 'war-stable',
+  $version        = 'latest',
+  $catalina_base  = '/usr/share/tomcat',
+  $proxy          = false,
+  $proxy_vhost    = {},
+  $extra_packages = {},
 ) {
 
   include profile::base
@@ -48,6 +49,10 @@ class profile::application::jenkins (
 
   if $install_jjb {
     include ::jenkins_job_builder
+  }
+
+  if $extra_packages {
+    create_resources('package', $extra_packages)
   }
 
   if $proxy {
