@@ -16,10 +16,6 @@ class profile::monitoring::server::sensu (
   $dashboard_servername      = 'monitor.example.com',
   $vhost_configuration       = {},
   $manage_rabbitmq           = true,
-  $rabbitmq_user             = 'sensu',
-  $rabbitmq_password         = undef,
-  $rabbitmq_vhost            = '/sensu',
-  $rabbitmq_user_permissions = {'read_permission' => '.*', 'write_permission' => '.*', 'configure_permission' => '.*'},
   $manage_redis              = true,
 ) {
 
@@ -30,31 +26,16 @@ class profile::monitoring::server::sensu (
   include profile::base
   include profile::monitoring::agent::sensu
 
-  $user_permissions = {"${rabbitmq_user}@${rabbitmq_vhost}" => $rabbitmq_user_permissions}
-  $vhost = {"${dashboard_servername}" => $vhost_configuration}
-
   if $manage_redis {
-    include ::redis
+    include profile::database::redis
   }
 
   if $manage_rabbitmq {
-    include ::rabbitmq
-
-    rabbitmq_user { $rabbitmq_user :
-      password => $rabbitmq_password,
-      require  => Class['rabbitmq'],
-    }
-    rabbitmq_vhost { $rabbitmq_vhost :
-      ensure  => present,
-      require => Class['rabbitmq'],
-    }
-
-    create_resources('rabbitmq_user_permissions', $user_permissions)
+    include profile::messaging::rabbitmq
   }
 
   if $proxy_dashboard {
-    include ::apache
-    create_resources('apache::vhost', $vhost)
+    include profile::webserver::apache
   }
 
   create_resources('sensu::check', $checks)
