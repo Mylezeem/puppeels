@@ -1,3 +1,3 @@
 class profile::openstack::messaging {
-  include ::rabbitmq
+  include profile::messaging::rabbitmq
 }

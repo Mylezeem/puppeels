@@ -6,9 +6,15 @@
 #   * yguenane/mariadbrepo
 #   * puppetlabs/mysql
 #
-class profile::database::mariadb {
+class profile::database::mariadb (
+  $client_enabled = true,
+) {
   include profile::base
 
   include ::mariadbrepo
   include ::mysql::server
+
+  if $client_enabled {
+    include ::mysql::client
+  }
 }
