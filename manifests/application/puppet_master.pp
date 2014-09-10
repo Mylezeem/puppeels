@@ -14,6 +14,7 @@ class profile::application::puppet_master (
   $main_configuration   = {},
   $agent_configuration  = {},
   $master_configuration = {},
+  $user_configuration   = {},
 ) {
 
   include profile::base
@@ -29,5 +30,6 @@ class profile::application::puppet_master (
   create_resources('ini_setting', $main_configuration, { 'section' => 'main', 'path' => $puppetconf_path })
   create_resources('ini_setting', $agent_configuration, { 'section' => 'agent', 'path' => $puppetconf_path })
   create_resources('ini_setting', $master_configuration, { 'section' => 'master', 'path' => $puppetconf_path })
+  create_resources('ini_setting', $user_configuration, { 'section' => 'user', 'path' => $puppetconf_path })
 
 }
