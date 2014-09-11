@@ -6,9 +6,11 @@
 #   * puppetlabs/puppetdb
 #   * zack/r10k
 #   * puppetlabs/inifile
+#   * hunner/hiera
 #
 class profile::application::puppet_master (
   $puppetconf_path      = '/etc/puppet/puppet.conf',
+  $hiera_enable         = true,
   $puppetdb_enable      = false,
   $r10k_enable          = false,
   $main_configuration   = {},
@@ -18,6 +20,10 @@ class profile::application::puppet_master (
 ) {
 
   include profile::base
+
+  if $hiera_enable {
+    include ::hiera
+  }
 
   if $r10k_enable {
     include ::r10k
