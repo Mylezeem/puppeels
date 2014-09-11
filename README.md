@@ -17,6 +17,7 @@ A set of example on how to use those profiles is availabe on the [puppeels-examp
 * [Gitlab](https://about.gitlab.com/)
 * [Jenkins](http://jenkins-ci.org/)
 * [MediaWiki](http://www.mediawiki.org/)
+* [Puppet Server](http://puppetlabs.com)
 * [PuppetDB](http://docs.puppetlabs.com/puppetdb/)
 
 #### Database
@@ -29,6 +30,10 @@ A set of example on how to use those profiles is availabe on the [puppeels-examp
 
 * [Apache](http://httpd.apache.org)
 * [Tomcat](http://tomcat.apache.org)
+
+#### Messaging
+
+* [RabbitMQ](http://www.rabbitmq.com)
 
 #### High Availability
 
