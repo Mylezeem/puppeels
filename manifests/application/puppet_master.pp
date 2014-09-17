@@ -13,6 +13,7 @@ class profile::application::puppet_master (
   $hiera_enable         = true,
   $puppetdb_enable      = false,
   $r10k_enable          = false,
+  $passenger_enable     = true,
   $main_configuration   = {},
   $agent_configuration  = {},
   $master_configuration = {},
@@ -20,6 +21,10 @@ class profile::application::puppet_master (
 ) {
 
   include profile::base
+
+  if $passenger_enable {
+    include ::profile::webserver::apache
+  }
 
   if $hiera_enable {
     include ::hiera
