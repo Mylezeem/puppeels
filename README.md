@@ -17,6 +17,7 @@ A set of example on how to use those profiles is availabe on the [puppeels-examp
 * [Gitlab](https://about.gitlab.com/)
 * [Jenkins](http://jenkins-ci.org/)
 * [MediaWiki](http://www.mediawiki.org/)
+* [Pentaho](http://www.pentaho.com)
 * [Puppet Server](http://puppetlabs.com)
 * [PuppetDB](http://docs.puppetlabs.com/puppetdb/)
 
