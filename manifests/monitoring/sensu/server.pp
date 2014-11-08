@@ -8,7 +8,7 @@
 #   mod 'puppetlabs/rabbitmq'
 #   mod 'thomasvandoren/redis'
 #
-class profile::monitoring::server::sensu (
+class profile::monitoring::sensu::server (
   $checks                    = {},
   $handlers                  = {},
   $plugins                   = {},
