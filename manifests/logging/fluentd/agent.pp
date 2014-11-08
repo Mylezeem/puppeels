@@ -5,7 +5,7 @@
 # Puppet module :
 #   * srf/fluentd
 #
-class profile::logging::agent::fluentd (
+class profile::logging::fluentd::agent (
   $sources = {},
   $matches = {},
   $plugins = {},

@@ -6,7 +6,7 @@
 #   * srf/fluentd
 #   * elasticsearch/elasticsearch
 #
-class profile::logging::server::fluentd (
+class profile::logging::fluentd::server (
 ) {
 
   include profile::base
