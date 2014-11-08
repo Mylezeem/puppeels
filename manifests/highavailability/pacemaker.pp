@@ -1,4 +1,4 @@
-class profile::openstack::spof {
+class profile::highavailability::pacemaker {
 } (
   include ::pacemaker
   include ::pacemaker::corosync
