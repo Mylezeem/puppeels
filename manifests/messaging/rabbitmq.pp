@@ -13,6 +13,12 @@ class profile::messaging::rabbitmq (
   $plugins          = {},
 ) {
 
+  Class['rabbitmq'] -> Rabbitmq_vhost <<| |>>
+  Class['rabbitmq'] -> Rabbitmq_user <<| |>>
+  Class['rabbitmq'] -> Rabbitmq_user_permissions <<| |>>
+  Class['rabbitmq'] -> Rabbitmq_exchange <<| |>>
+  Class['rabbitmq'] -> Rabbitmq_plugin <<| |>>
+
   include profile::base
 
   include ::rabbitmq
