@@ -11,7 +11,7 @@ class profile::base::base (
   $manage_epel       = true,
   $manage_accounts   = true,
   $manage_logging    = 'fluentd',
-  $manage_monitoring = true,
+  $manage_monitoring = 'sensu',
   $manage_sshd       = true,
   $manage_ntp        = true,
   $manage_sudo       = true,
@@ -31,7 +31,7 @@ class profile::base::base (
   }
 
   if $manage_monitoring {
-    include "profile::monitoring::${manage_logging}::agent"
+    include "profile::monitoring::${manage_monitoring}::agent"
   }
 
   if $manage_sshd {
