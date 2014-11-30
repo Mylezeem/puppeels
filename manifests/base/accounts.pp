@@ -5,7 +5,7 @@
 # Puppet module :
 #   * https://github.com/Mylezeem/puppet-account
 #
-class profile::accounts (
+class profile::base::accounts (
   $accounts = undef,
 ) {
   validate_hash($accounts)

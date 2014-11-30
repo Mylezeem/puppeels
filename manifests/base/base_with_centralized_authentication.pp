@@ -6,9 +6,10 @@
 #   mod 'saz/ssh'
 #   mod 'saz/sudo'
 #   mod 'yguenane/authconfig'
+#   mod 'stahnma/epel'
 #
 class profile::base_with_centralized_authentication {
-  include profile::base_repositories_el
+  include ::epel
 
   include ::ssh::server
   include ::ntp

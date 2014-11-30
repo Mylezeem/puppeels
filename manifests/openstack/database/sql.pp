@@ -5,9 +5,14 @@ class profile::openstack::database::sql (
   $neutron_enabled  = true,
   $heat_enabled     = false,
   $trove_enabled    = false,
+  $database         = 'mariadb',
 ) {
 
-  include profile::database::mariadb
+  if $database in ['mariadb', 'postgresql'] {
+    include profile::database::$database
+  } else {
+    fail('invalid database backend selected: choose from mariadb or postgresql')
+  }
 
   if $keystone_enabled {
     include ::keystone::db::mysql

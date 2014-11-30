@@ -5,7 +5,7 @@
 # Puppet module :
 #   mod 'sensu/sensu'
 #
-class profile::monitoring::agent::sensu (
+class profile::monitoring::sensu::agent (
   $plugins = {},
   $checks  = {},
 ) {
