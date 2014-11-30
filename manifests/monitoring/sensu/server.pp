@@ -38,19 +38,17 @@ class profile::monitoring::sensu::server (
 
   if size($rabbitmq_user_realized) >= 1 {
 
-    # TODO (spredzy): Find a nicer way to deal with dependencies
-    Service['rabbitmq-server'] -> Class['sensu::package']
-    Service['redis-6379'] -> Service['sensu-api'] -> Service['sensu-server']
-
     include profile::base
     include profile::monitoring::agent::sensu
 
     if $manage_redis {
       include profile::database::redis
+      Service['redis-6379'] -> Service['sensu-api'] -> Service['sensu-server']
     }
 
     if $manage_rabbitmq {
       include profile::messaging::rabbitmq
+      Service['rabbitmq-server'] -> Class['sensu::package']
     }
 
     if $proxy_dashboard {
