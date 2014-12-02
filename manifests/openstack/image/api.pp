@@ -1,5 +1,7 @@
 class profile::openstack::image::api(
-  $backend = 'rbd'
+  $backend        = 'rbd',
+  $manage_pruner  = true,
+  $manage_cleaner = true
 ) {
 
   include ::glance::api
@@ -8,6 +10,13 @@ class profile::openstack::image::api(
   } else {
     fail('Invalid glance backend selected, choose from cinder, file, rbd, swift, vsphere')
   }
-  include ::glance::cache::cleaner
-  include ::glance::cache::pruner
+
+  if $manage_cleaner {
+    include ::glance::cache::cleaner
+  }
+
+  if $manage_pruner {
+    include ::glance::cache::pruner
+  }
+
 }
