@@ -17,10 +17,15 @@ class profile::base::base (
   $manage_sudo       = true,
   $manage_authconfig = true,
   $base_packages     = true,
-  $package_ensure    = 'installed'
+  $package_ensure    = 'installed',
+  $base_classes      = [],
 ) {
-  include profile::base::accounts
   include ::augeasproviders
+  include $base_classes
+
+  if $manage_accounts {
+    include profile::base::accounts
+  }
 
   if $manage_epel {
     include epel
@@ -56,4 +61,5 @@ class profile::base::base (
       ensure => $package_ensure
     }
   }
+
 }
