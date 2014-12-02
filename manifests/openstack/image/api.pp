@@ -4,7 +4,7 @@ class profile::openstack::image::api(
 
   include ::glance::api
   if $backend and $backend in ['cinder', 'file', 'rbd', 'swift', 'vsphere'] {
-    include ::glance::backend::$backend
+    include "::glance::backend::${backend}"
   } else {
     fail('Invalid glance backend selected, choose from cinder, file, rbd, swift, vsphere')
   }
