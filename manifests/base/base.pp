@@ -8,19 +8,29 @@
 #   mod 'puppetlabs/ntp'
 #
 class profile::base::base (
-  $manage_epel       = true,
-  $manage_accounts   = true,
-  $manage_logging    = 'fluentd',
-  $manage_monitoring = 'sensu',
-  $manage_sshd       = true,
-  $manage_ntp        = true,
-  $manage_sudo       = true,
-  $manage_authconfig = true,
-  $base_packages     = true,
-  $package_ensure    = 'installed'
+  $manage_augeasproviders  = true,
+  $manage_epel             = true,
+  $manage_accounts         = true,
+  $manage_logging          = 'fluentd',
+  $manage_monitoring       = 'sensu',
+  $manage_sshd             = true,
+  $manage_ntp              = true,
+  $manage_sudo             = true,
+  $manage_authconfig       = true,
+  $manage_firewall         = true,
+  $base_packages           = [],
+  $package_ensure          = 'installed',
+  $base_classes            = [],
 ) {
-  include profile::base::accounts
-  include ::augeasproviders
+  include $base_classes
+
+  if $manage_augeasproviders {
+    include ::augeasproviders
+  }
+
+  if $manage_accounts {
+    include profile::base::accounts
+  }
 
   if $manage_epel {
     include epel
@@ -51,9 +61,14 @@ class profile::base::base (
     include ::authconfig
   }
 
+  if $manage_firewall {
+    include ::firewall
+  }
+
   if $base_packages {
     package { $base_packages:
       ensure => $package_ensure
     }
   }
+
 }

@@ -6,6 +6,8 @@ class profile::openstack::identity (
   $nova_enabled       = true,
   $swift_enabled      = true,
   $trove_enabled      = true,
+  $manage_firewall    = true,
+  $firewall_extras    = {}
 ) {
 
   include ::keystone
@@ -42,5 +44,10 @@ class profile::openstack::identity (
     include ::trove::keystone::auth
   }
 
-
+  if $firewall_enabled {
+    profile::firewall::rule { '228 keystone accept tcp':
+      port   => 5000,
+      extras => $firewall_extras
+    }
+  }
 }

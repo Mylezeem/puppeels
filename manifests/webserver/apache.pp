@@ -9,10 +9,11 @@ class profile::webserver::apache (
   $dev_enable       = false,
   $mods_enable      = [],
   $vhost_definition = {},
+  $manage_firewall  = true,
+  $firewall_ports   = [80, 443],
+  $firewall_extras  = {}
 ) {
 
-  include profile::base
- 
   include ::apache
 
   if $dev_enable {
@@ -25,5 +26,12 @@ class profile::webserver::apache (
   }
 
   create_resources('::apache::vhost', $vhost_definition)
+
+  if $manage_firewall {
+    profile::firewall::rule { '100 apache accept tcp 80 443':
+      port   => $firewall_ports,
+      extras => $firewall_extras
+    }
+  }
 
 }

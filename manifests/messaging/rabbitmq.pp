@@ -11,6 +11,8 @@ class profile::messaging::rabbitmq (
   $exchanges        = {},
   $user_permissions = {},
   $plugins          = {},
+  $manage_firewall  = true,
+  $firewall_extras  = {}
 ) {
 
   Class['rabbitmq'] -> Rabbitmq_vhost <<| |>>
@@ -19,8 +21,6 @@ class profile::messaging::rabbitmq (
   Class['rabbitmq'] -> Rabbitmq_exchange <<| |>>
   Class['rabbitmq'] -> Rabbitmq_plugin <<| |>>
 
-  include profile::base
-
   include ::rabbitmq
   create_resources('rabbitmq_user', $users)
   create_resources('rabbitmq_vhost', $vhosts)
@@ -28,4 +28,10 @@ class profile::messaging::rabbitmq (
   create_resources('rabbitmq_user_permissions', $user_permissions)
   create_resources('rabbitmq_plugin', $plugins)
 
+  if $manage_firewall {
+    profile::firewall::rule { '201 rabbitmq accept tcp':
+      port   => 5672,
+      extras => $firewall_extras
+    }
+  }
 }
