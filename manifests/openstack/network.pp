@@ -1,7 +1,13 @@
 class profile::openstack::network(
-  $l2_driver = 'ovs'
+  $l2_driver = 'ovs',
+  $plugin    = 'ml2'
 ){
   include ::neutron
-  include ::neutron::agents::ml2::$l2_driver
-  include ::neutron::plugins::ml2
+  include "::neutron::plugins::${plugin}"
+
+  if $plugin == 'ml2' {
+    include "::neutron::agents::ml2::${l2_driver}"
+  } else {
+    include "::neutron::agents::${plugin}"
+  }
 }
