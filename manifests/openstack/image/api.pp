@@ -1,7 +1,9 @@
 class profile::openstack::image::api(
-  $backend        = 'rbd',
-  $manage_pruner  = true,
-  $manage_cleaner = true
+  $backend         = 'rbd',
+  $manage_pruner   = true,
+  $manage_cleaner  = true,
+  $manage_firewall = true,
+  $firewall_extras = {}
 ) {
 
   include ::glance::api
@@ -19,4 +21,11 @@ class profile::openstack::image::api(
     include ::glance::cache::pruner
   }
 
+  if $manage_firewall {
+    profile::firewall::rule { '229 glance-api accept tcp':
+      port   => 9292,
+      extras => $firewall_extras
+    }
+  }
 }
+
