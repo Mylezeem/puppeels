@@ -63,6 +63,8 @@ class profile::base::base (
 
   if $manage_firewall {
     include ::firewall
+    include ::profile::firewall::pre
+    include ::profile::firewall::post
   }
 
   if $base_packages {
