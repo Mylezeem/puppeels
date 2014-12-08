@@ -7,10 +7,11 @@
 #   * puppetlabs/mysql
 #
 class profile::database::mariadb (
-  $client_enabled  = true,
-  $manage_repo     = true,
-  $manage_firewall = true,
-  $firewall_extras = {}
+  $client_enabled   = true,
+  $manage_repo      = true,
+  $manage_firewall  = true,
+  $firewall_extras  = {},
+  $manage_discovery = 'consul',
 ) {
 
   if $manage_repo {
@@ -28,5 +29,9 @@ class profile::database::mariadb (
       port   => 3306,
       extras => $firewall_extras
     }
+  }
+
+  if $manage_discovery {
+    include "profile::discovery::${manage_discovery}::mariadb"
   }
 }
