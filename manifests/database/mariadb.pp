@@ -11,7 +11,6 @@ class profile::database::mariadb (
   $manage_repo      = true,
   $manage_firewall  = true,
   $firewall_extras  = {},
-  $manage_discovery = 'consul',
 ) {
 
   if $manage_repo {
@@ -31,7 +30,7 @@ class profile::database::mariadb (
     }
   }
 
-  if $manage_discovery {
-    include "profile::discovery::${manage_discovery}::mariadb"
+  Profile::Discovery::Consul <||> {
+    services +> 'profile::discovery::consul::mariadb'
   }
 }

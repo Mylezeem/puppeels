@@ -50,4 +50,8 @@ class profile::openstack::identity (
       extras => $firewall_extras
     }
   }
+
+  Profile::Discovery::Consul <||> {
+    services +> 'profile::discovery::consul::identity'
+  }
 }

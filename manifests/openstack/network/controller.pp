@@ -12,4 +12,7 @@ class profile::openstack::network::controller(
       extras => $extras
     }
   }
+  Profile::Discovery::Consul <||> {
+    services +> 'profile::discovery::consul::network_server'
+  }
 }

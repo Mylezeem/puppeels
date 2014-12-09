@@ -14,10 +14,14 @@ class profile::application::consul (
     'serf-lan' => {},
     'serf-wan' => {},
     'server'   => {}
-  }
+  },
+  $services = []
 )
 {
   include ::consul
+  profile::discovery::consul { 'profile_consul_services':
+    services => $services
+  }
 
   if $manage_firewall {
     profile::firewall::rule { '190 consul-dns accept tcp':

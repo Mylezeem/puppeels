@@ -27,5 +27,8 @@ class profile::openstack::image::api(
       extras => $firewall_extras
     }
   }
+  Profile::Discovery::Consul <||> {
+    services +> 'profile::discovery::consul::glance_api'
+  }
 }
 

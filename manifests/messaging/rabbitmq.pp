@@ -34,4 +34,8 @@ class profile::messaging::rabbitmq (
       extras => $firewall_extras
     }
   }
+
+  Profile::Discovery::Consul <||> {
+    services +> 'profile::discovery::consul::rabbitmq'
+  }
 }
