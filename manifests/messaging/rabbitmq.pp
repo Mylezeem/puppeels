@@ -33,6 +33,22 @@ class profile::messaging::rabbitmq (
       port   => 5672,
       extras => $firewall_extras
     }
+    profile::firewall::rule { '201 rabbitmq-mgmt accept tcp':
+      port   => 15672,
+      extras => $firewall_extras
+    }
+    profile::firewall::rule { '201 rabbitmq-ednp accept tcp':
+      port   => 25672,
+      extras => $firewall_extras
+    }
+    profile::firewall::rule { '201 rabbitmq-epmd accept tcp':
+      port   => 4369,
+      extras => $firewall_extras
+    }
+    profile::firewall::rule { '201 rabbitmq-cluster accept tcp':
+      port   => [ 35197, 35198, 35199 ],
+      extras => $firewall_extras
+    }
   }
 
   Profile::Discovery::Consul <||> {
