@@ -28,7 +28,7 @@ class profile::openstack::image::api(
     }
   }
   Profile::Discovery::Consul <||> {
-    services +> 'profile::discovery::consul::glance_api'
+    services +> 'profile::discovery::consul::image_api'
   }
 }
 
