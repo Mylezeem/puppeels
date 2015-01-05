@@ -18,30 +18,58 @@ class profile::openstack::identity (
   if $swift_enabled {
     include ::swift::keystone::auth
     include ::swift::keystone::dispersion
+
+    Profile::discovery::consul::datadep <| title == 'authkeystonedep' |> {
+      before +> Class['::swift::keystone::auth']
+    }
   }
 
   if $ceilometer_enabled {
     include ::ceilometer::keystone::auth
+
+    Profile::discovery::consul::datadep <| title == 'authkeystonedep' |> {
+      before +> Class['::ceilometer::keystone::auth']
+    }
   }
 
   if $nova_enabled {
     include ::nova::keystone::auth
+
+    Profile::discovery::consul::datadep <| title == 'authkeystonedep' |> {
+      before +> Class['::nova::keystone::auth']
+    }
   }
 
   if $neutron_enabled {
     include ::neutron::keystone::auth
+
+    Profile::discovery::consul::datadep <| title == 'authkeystonedep' |> {
+      before +> Class['::neutron::keystone::auth']
+    }
   }
 
   if $cinder_enabled {
     include ::cinder::keystone::auth
+
+    Profile::discovery::consul::datadep <| title == 'authkeystonedep' |> {
+      before +> Class['::cinder::keystone::auth']
+    }
   }
 
   if $glance_enabled {
     include ::glance::keystone::auth
+
+    Profile::discovery::consul::datadep <| title == 'authkeystonedep' |> {
+      before +> Class['::glance::keystone::auth']
+    }
   }
 
   if $trove_enabled {
     include ::trove::keystone::auth
+
+    Profile::discovery::consul::datadep <| title == 'authkeystonedep' |> {
+      before +> Class['::trove::keystone::auth']
+    }
   }
 
   if $manage_firewall {
