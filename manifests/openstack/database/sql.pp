@@ -16,30 +16,61 @@ class profile::openstack::database::sql (
 
   if $keystone_enabled {
     include ::keystone::db::mysql
+
+    Profile::discovery::consul::datadep <| title == 'dbmysqldep' |> {
+      before +> Class['::keystone::db::mysql']
+    }
   }
 
   if $glance_enabled {
     include ::glance::db::mysql
+
+    Profile::discovery::consul::datadep <| title == 'dbmysqldep' |> {
+      before +> Class['::glance::db::mysql']
+    }
   }
 
   if $nova_enabled {
     include ::nova::db::mysql
+
+    Profile::discovery::consul::datadep <| title == 'dbmysqldep' |> {
+      before +> Class['::nova::db::mysql']
+    }
   }
 
   if $cinder_enabled {
     include ::cinder::db::mysql
+
+    Profile::discovery::consul::datadep <| title == 'dbmysqldep' |> {
+      before +> Class['::cinder::db::mysql']
+    }
   }
 
   if $neutron_enabled {
     include ::neutron::db::mysql
+
+    Profile::discovery::consul::datadep <| title == 'dbmysqldep' |> {
+      before +> Class['::neutron::db::mysql']
+    }
   }
 
   if $heat_enabled {
     include ::heat::db::mysql
+
+    Profile::discovery::consul::datadep <| title == 'dbmysqldep' |> {
+      before +> Class['::heat::db::mysql']
+    }
   }
 
   if $trove_enabled {
     include ::trove::db::mysql
+
+    Profile::discovery::consul::datadep <| title == 'dbmysqldep' |> {
+      before +> Class['::trove::db::mysql']
+    }
   }
 
+  Profile::Discovery::Consul <||> {
+    services +> 'profile::discovery::consul::os_sql'
+  }
 }
