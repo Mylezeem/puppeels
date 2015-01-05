@@ -10,4 +10,30 @@ class profile::discovery::consul::compute_api (
   consul::service { 'nova-api-metadata':
     port    => 8775,
   }
+
+  profile::discovery::consul::datadep { 'novakeystonedep':
+    key    => 'keystone_Address',
+    before => [Class['::nova::api'], Class['::nova::network::neutron']]
+  }
+
+  profile::discovery::consul::datadep { 'novaglancedep':
+    key    => 'glance-api_Address',
+    before => [Class['::nova']]
+  }
+
+  profile::discovery::consul::datadep { 'novaneutrondep':
+    key    => 'neutron-server_Address',
+    before => [Class['::nova::network::neutron']]
+  }
+
+  profile::discovery::consul::datadep { 'novadbdep':
+    key    => 'mysql_Address',
+    before => [Class['::nova']]
+  }
+
+  profile::discovery::consul::datadep { 'novarabbitmqdep':
+    key    => 'rabbitmq_Address',
+    before => [Class['::nova']]
+  }
+
 }
