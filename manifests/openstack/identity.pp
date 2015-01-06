@@ -7,7 +7,8 @@ class profile::openstack::identity (
   $swift_enabled      = true,
   $trove_enabled      = true,
   $manage_firewall    = true,
-  $firewall_extras    = {}
+  $firewall_extras    = {},
+  $discover_endpoints = false
 ) {
 
   include ::keystone
@@ -16,65 +17,94 @@ class profile::openstack::identity (
   include ::keystone::cron::token_flush
 
   if $swift_enabled {
-    include ::swift::keystone::auth
     include ::swift::keystone::dispersion
 
-    Profile::Discovery::Consul::Identity_shard <||> {
-      c_array +> ['swiftkeyauthdep', {'key' => 'swift_Address',
-                                      'before' => [Class['::swift::keystone::auth']]}]
+    if $discover_endpoints {
+
+      Profile::Discovery::Consul::Identity_shard <||> {
+        c_array +> ['swiftkeyauthdep', {'key' => 'swift_Address',
+                                      'include' => '::swift::keystone::auth'}]
+      }
+
+    } else {
+      include ::swift::keystone::auth
     }
   }
 
   if $ceilometer_enabled {
-    include ::ceilometer::keystone::auth
+    if $discover_endpoints {
 
-    Profile::Discovery::Consul::Identity_shard <||> {
-      c_array +> ['ceilokeyauthdep', {'key' => 'ceilometer_Address',
-                                      'before' => [Class['::ceilometer::keystone::auth']]}]
+      Profile::Discovery::Consul::Identity_shard <||> {
+        c_array +> ['ceilokeyauthdep', {'key' => 'ceilometer_Address', 'include' => '::ceilometer::keystone::auth'}]
+      }
+
+    } else {
+      include ::ceilometer::keystone::auth
     }
   }
 
   if $nova_enabled {
-    include ::nova::keystone::auth
+    if $discover_endpoints {
 
-    Profile::Discovery::Consul::Identity_shard <||> {
-      c_array +> ['novakeyauthdep', {'key' => 'nova-api_Address', 'badvalues' => ['127.0.0.1'],
-                                      'before' => [Class['::nova::keystone::auth']]}]
+      Profile::Discovery::Consul::Identity_shard <||> {
+        c_array +> ['novakeyauthdep', {'key' => 'nova-api_Address', 'badvalues' => ['127.0.0.1'],
+                                       'include' => '::nova::keystone::auth'}]
+      }
+
+    } else {
+      include ::nova::keystone::auth
     }
   }
 
   if $neutron_enabled {
-    include ::neutron::keystone::auth
+    if $discover_endpoints {
 
-    Profile::Discovery::Consul::Identity_shard <||> {
-      c_array +> ['neutronkeyauthdep', {'key' => 'neutron-server_Address', 'badvalues' => ['127.0.0.1']}]
+      Profile::Discovery::Consul::Identity_shard <||> {
+        c_array +> ['neutronkeyauthdep', {'key' => 'neutron-server_Address', 'badvalues' => ['127.0.0.1'],
+                                          'include' => '::neutron::keystone::auth'}]
+      }
+
+    } else {
+      include ::neutron::keystone::auth
     }
   }
 
   if $cinder_enabled {
-    include ::cinder::keystone::auth
+    if $discover_endpoints {
 
-    Profile::Discovery::Consul::Identity_shard <||> {
-      c_array +> ['cinderkeyauthdep', {'key' => 'cinder-api',
-                                      'before' => [Class['::cinder::keystone::auth']]}]
+      Profile::Discovery::Consul::Identity_shard <||> {
+        c_array +> ['cinderkeyauthdep', {'key' => 'cinder-api',
+                                         'include' => '::cinder::keystone::auth'}]
+      }
+
+    } else {
+      include ::cinder::keystone::auth
     }
   }
 
   if $glance_enabled {
-    include ::glance::keystone::auth
+    if $discover_endpoints {
 
-    Profile::Discovery::Consul::Identity_shard <||> {
-      c_array +> ['glancekeyauthdep', {'key' => 'glance-api_Address',
-                                      'before' => [Class['::glance::keystone::auth']]}]
+      Profile::Discovery::Consul::Identity_shard <||> {
+        c_array +> ['glancekeyauthdep', {'key' => 'glance-api_Address',
+                                         'include' => '::glance::keystone::auth'}]
+      }
+
+    } else {
+      include ::glance::keystone::auth
     }
   }
 
   if $trove_enabled {
-    include ::trove::keystone::auth
+    if $discover_endpoints {
 
-    Profile::Discovery::Consul::Identity_shard <||> {
-      c_array +> ['trovekeyauthdep', {'key' => 'trove-api_Address',
-                                      'before' => [Class['::trove::keystone::auth']]}]
+      Profile::Discovery::Consul::Identity_shard <||> {
+        c_array +> ['trovekeyauthdep', {'key' => 'trove-api_Address',
+                                        'include' => '::trove::keystone::auth'}]
+      }
+
+    } else {
+      include ::trove::keystone::auth
     }
   }
 
