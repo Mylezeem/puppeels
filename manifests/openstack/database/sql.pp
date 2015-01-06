@@ -17,7 +17,7 @@ class profile::openstack::database::sql (
   if $keystone_enabled {
     include ::keystone::db::mysql
 
-    Profile::discovery::consul::datadep <| title == 'dbmysqldep' |> {
+    Profile::Discovery::Consul::Datadep <| title == 'dbmysqldep' |> {
       before +> Class['::keystone::db::mysql']
     }
   }
@@ -25,7 +25,7 @@ class profile::openstack::database::sql (
   if $glance_enabled {
     include ::glance::db::mysql
 
-    Profile::discovery::consul::datadep <| title == 'dbmysqldep' |> {
+    Profile::Discovery::Consul::Datadep <| title == 'dbmysqldep' |> {
       before +> Class['::glance::db::mysql']
     }
   }
@@ -33,7 +33,7 @@ class profile::openstack::database::sql (
   if $nova_enabled {
     include ::nova::db::mysql
 
-    Profile::discovery::consul::datadep <| title == 'dbmysqldep' |> {
+    Profile::Discovery::Consul::Datadep <| title == 'dbmysqldep' |> {
       before +> Class['::nova::db::mysql']
     }
   }
@@ -41,7 +41,7 @@ class profile::openstack::database::sql (
   if $cinder_enabled {
     include ::cinder::db::mysql
 
-    Profile::discovery::consul::datadep <| title == 'dbmysqldep' |> {
+    Profile::Discovery::Consul::Datadep <| title == 'dbmysqldep' |> {
       before +> Class['::cinder::db::mysql']
     }
   }
@@ -49,7 +49,7 @@ class profile::openstack::database::sql (
   if $neutron_enabled {
     include ::neutron::db::mysql
 
-    Profile::discovery::consul::datadep <| title == 'dbmysqldep' |> {
+    Profile::Discovery::Consul::Datadep <| title == 'dbmysqldep' |> {
       before +> Class['::neutron::db::mysql']
     }
   }
@@ -57,7 +57,7 @@ class profile::openstack::database::sql (
   if $heat_enabled {
     include ::heat::db::mysql
 
-    Profile::discovery::consul::datadep <| title == 'dbmysqldep' |> {
+    Profile::Discovery::Consul::Datadep <| title == 'dbmysqldep' |> {
       before +> Class['::heat::db::mysql']
     }
   }
@@ -65,7 +65,7 @@ class profile::openstack::database::sql (
   if $trove_enabled {
     include ::trove::db::mysql
 
-    Profile::discovery::consul::datadep <| title == 'dbmysqldep' |> {
+    Profile::Discovery::Consul::Datadep <| title == 'dbmysqldep' |> {
       before +> Class['::trove::db::mysql']
     }
   }

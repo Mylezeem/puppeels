@@ -38,7 +38,7 @@ class profile::openstack::identity (
     include ::nova::keystone::auth
 
     Profile::Discovery::Consul::Identity_shard <||> {
-      c_array +> ['novakeyauthdep', {'key' => 'nova-api_Address',
+      c_array +> ['novakeyauthdep', {'key' => 'nova-api_Address', 'badvalues' => ['127.0.0.1'],
                                       'before' => [Class['::nova::keystone::auth']]}]
     }
   }
@@ -47,8 +47,7 @@ class profile::openstack::identity (
     include ::neutron::keystone::auth
 
     Profile::Discovery::Consul::Identity_shard <||> {
-      c_array +> ['neutronkeyauthdep', {'key' => 'neutron-server_Address',
-                                        'before' => [Class['::neutron::keystone::auth']]}]
+      c_array +> ['neutronkeyauthdep', {'key' => 'neutron-server_Address', 'badvalues' => ['127.0.0.1']}]
     }
   }
 

@@ -2,7 +2,7 @@
 define profile::discovery::consul::datadep (
   $key,
   $before    = [],
-  $badvalues = []
+  $badvalues = [],
 ) {
 
   $_key = hiera($key, false)
@@ -13,10 +13,9 @@ define profile::discovery::consul::datadep (
     $fail = false
   }
 
-  $_name = join($before, '_')
-  runtime_fail { "${_name}_req_${key}":
+  runtime_fail { $title:
     fail    => $fail,
-    message => "${before} requires ${key}",
+    message => "${title}: ${before} requires ${key}",
     before  => $before
   }
 }

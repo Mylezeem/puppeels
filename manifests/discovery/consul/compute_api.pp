@@ -13,7 +13,7 @@ class profile::discovery::consul::compute_api (
 
   profile::discovery::consul::datadep { 'novakeystonedep':
     key    => 'keystone_Address',
-    before => [Class['::nova::api'], Class['::nova::network::neutron']]
+    before => [Class['::nova::api', '::nova::network::neutron']]
   }
 
   profile::discovery::consul::datadep { 'novaglancedep':
@@ -23,12 +23,13 @@ class profile::discovery::consul::compute_api (
 
   profile::discovery::consul::datadep { 'novaneutrondep':
     key    => 'neutron-server_Address',
-    before => [Class['::nova::network::neutron']]
+    before => []
   }
 
   profile::discovery::consul::datadep { 'novadbdep':
-    key    => 'mysql_Address',
-    before => [Class['::nova']]
+    key       => 'mysql_Address',
+    badvalues => ['127.0.0.1'],
+    before    => [Class['::nova']]
   }
 
   profile::discovery::consul::datadep { 'novarabbitmqdep':

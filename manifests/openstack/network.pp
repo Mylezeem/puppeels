@@ -10,4 +10,8 @@ class profile::openstack::network(
   } else {
     include "::neutron::agents::${plugin}"
   }
+
+  Profile::Discovery::Consul <||> {
+    services +> 'profile::discovery::consul::network'
+  }
 }
