@@ -8,7 +8,7 @@ class profile::discovery::consul::network_server (
   profile::discovery::consul::datadep { 'neutronmysqldep':
     key       => 'mysql_Address',
     badvalues => ['127.0.0.1'],
-    before    => [Class['::neutron::server']]
+    before    => [Class['::neutron::server'], Package['neutron']]
   }
 
   profile::discovery::consul::datadep { 'neutronkeystonedep':
