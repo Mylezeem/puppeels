@@ -19,56 +19,63 @@ class profile::openstack::identity (
     include ::swift::keystone::auth
     include ::swift::keystone::dispersion
 
-    Profile::discovery::consul::datadep <| title == 'authkeystonedep' |> {
-      before +> Class['::swift::keystone::auth']
+    Profile::Discovery::Consul::Identity_shard <||> {
+      c_array +> ['swiftkeyauthdep', {'key' => 'swift_Address',
+                                      'before' => [Class['::swift::keystone::auth']]}]
     }
   }
 
   if $ceilometer_enabled {
     include ::ceilometer::keystone::auth
 
-    Profile::discovery::consul::datadep <| title == 'authkeystonedep' |> {
-      before +> Class['::ceilometer::keystone::auth']
+    Profile::Discovery::Consul::Identity_shard <||> {
+      c_array +> ['ceilokeyauthdep', {'key' => 'ceilometer_Address',
+                                      'before' => [Class['::ceilometer::keystone::auth']]}]
     }
   }
 
   if $nova_enabled {
     include ::nova::keystone::auth
 
-    Profile::discovery::consul::datadep <| title == 'authkeystonedep' |> {
-      before +> Class['::nova::keystone::auth']
+    Profile::Discovery::Consul::Identity_shard <||> {
+      c_array +> ['novakeyauthdep', {'key' => 'nova-api_Address',
+                                      'before' => [Class['::nova::keystone::auth']]}]
     }
   }
 
   if $neutron_enabled {
     include ::neutron::keystone::auth
 
-    Profile::discovery::consul::datadep <| title == 'authkeystonedep' |> {
-      before +> Class['::neutron::keystone::auth']
+    Profile::Discovery::Consul::Identity_shard <||> {
+      c_array +> ['neutronkeyauthdep', {'key' => 'neutron-server_Address',
+                                        'before' => [Class['::neutron::keystone::auth']]}]
     }
   }
 
   if $cinder_enabled {
     include ::cinder::keystone::auth
 
-    Profile::discovery::consul::datadep <| title == 'authkeystonedep' |> {
-      before +> Class['::cinder::keystone::auth']
+    Profile::Discovery::Consul::Identity_shard <||> {
+      c_array +> ['cinderkeyauthdep', {'key' => 'cinder-api',
+                                      'before' => [Class['::cinder::keystone::auth']]}]
     }
   }
 
   if $glance_enabled {
     include ::glance::keystone::auth
 
-    Profile::discovery::consul::datadep <| title == 'authkeystonedep' |> {
-      before +> Class['::glance::keystone::auth']
+    Profile::Discovery::Consul::Identity_shard <||> {
+      c_array +> ['glancekeyauthdep', {'key' => 'glance-api_Address',
+                                      'before' => [Class['::glance::keystone::auth']]}]
     }
   }
 
   if $trove_enabled {
     include ::trove::keystone::auth
 
-    Profile::discovery::consul::datadep <| title == 'authkeystonedep' |> {
-      before +> Class['::trove::keystone::auth']
+    Profile::Discovery::Consul::Identity_shard <||> {
+      c_array +> ['trovekeyauthdep', {'key' => 'trove-api_Address',
+                                      'before' => [Class['::trove::keystone::auth']]}]
     }
   }
 
