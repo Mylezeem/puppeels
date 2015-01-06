@@ -1,13 +1,13 @@
 #
 define profile::discovery::consul::datadep (
   $key,
-  $before = []
+  $before    = [],
+  $badvalues = []
 ) {
 
   $_key = hiera($key, false)
 
-
-  if ! $_key {
+  if ! $_key or member($badvalues, $_key){
     $fail = true
   } else {
     $fail = false
