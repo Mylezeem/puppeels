@@ -8,8 +8,11 @@ class profile::discovery::consul::network_server (
   profile::discovery::consul::datadep { 'neutronmysqldep':
     key       => 'mysql_Address',
     badvalues => ['127.0.0.1'],
-    before    => [Class['::neutron::server'], Package['neutron']]
+    before    => [Class['::neutron::server']]
   }
+
+  # todo patch this in-module
+  Neutron_config['database/connection'] ~> Exec<| title == 'neutron-db-sync' |>
 
   profile::discovery::consul::datadep { 'neutronkeystonedep':
     key    => 'keystone_Address',
