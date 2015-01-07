@@ -13,7 +13,7 @@ class profile::base::base (
   $manage_accounts         = true,
   $manage_logging          = 'fluentd',
   $manage_monitoring       = 'sensu',
-  $manage_sshd             = true,
+  $manage_ssh              = true,
   $manage_ntp              = true,
   $manage_sudo             = true,
   $manage_authconfig       = true,
@@ -44,8 +44,8 @@ class profile::base::base (
     include "profile::monitoring::${manage_monitoring}::agent"
   }
 
-  if $manage_sshd {
-    include ::ssh::server
+  if $manage_ssh {
+    include ::ssh
   }
 
   if $manage_ntp {
@@ -63,6 +63,8 @@ class profile::base::base (
 
   if $manage_firewall {
     include ::firewall
+    include ::profile::firewall::pre
+    include ::profile::firewall::post
   }
 
   if $base_packages {

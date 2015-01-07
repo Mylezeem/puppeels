@@ -10,4 +10,7 @@ class profile::openstack::image::registry (
       extras => $firewall_extras
     }
   }
+  Profile::Discovery::Consul <||> {
+    services +> 'profile::discovery::consul::image_registry'
+  }
 }
