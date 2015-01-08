@@ -29,7 +29,7 @@ class profile::base::base (
   }
 
   if $manage_accounts {
-    include profile::base::accounts
+    include account::accounts
   }
 
   if $manage_epel {
