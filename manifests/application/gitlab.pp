@@ -11,7 +11,6 @@ class profile::application::gitlab (
   $proxy        = 'nginx',
 ) {
 
-  include profile::base
   include ::gitlab
 
   if $manage_redis {

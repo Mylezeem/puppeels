@@ -11,8 +11,6 @@ class profile::highavailability::loadbalancing::haproxy (
   $haproxy_balancermembers   = {},
 ) {
 
-  include profile::base
-
   include ::haproxy
   create_resources('haproxy::listen', $haproxy_listens)
   create_resources('haproxy::balancermember', $haproxy_balancermembers)

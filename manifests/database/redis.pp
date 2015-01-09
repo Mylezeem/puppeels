@@ -9,8 +9,6 @@ class profile::database::redis (
   $instances = {},
 ) {
 
-  include profile::base
-
   include ::redis
   create_resources('redis::instance', $instances)
 }

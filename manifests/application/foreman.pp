@@ -10,7 +10,6 @@
 #   mod 'zack/r10k'
 #
 class profile::application::foreman {
-  include profile::base
 
   include ::r10k
   include ::tftp

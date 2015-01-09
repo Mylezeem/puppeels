@@ -11,8 +11,6 @@ class profile::highavailability::keepalived (
   $ip_nonlocal_bind          = true,
 ) {
 
-  include profile::base
-
   include ::keepalived
   create_resources('keepalived::vrrp::script', $keepalived_vrrp_scripts)
   create_resources('keepalived::vrrp::instance', $keepalived_vrrp_instances)

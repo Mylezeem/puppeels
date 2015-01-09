@@ -30,8 +30,6 @@ class profile::webserver::tomcat (
   Tomcat::Config::Server::Service <| |> ~> Tomcat::Service <| |>
   Tomcat::Config::Server::Valve <| |> ~> Tomcat::Service <| |>
 
-  include profile::base
-
   if $install_jpackage {
     include ::jpackage
   }
