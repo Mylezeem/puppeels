@@ -9,7 +9,6 @@ class profile::database::elasticsearch::server (
   $instances = {}
 ) {
 
-  include profile::base
   include ::java
   include ::elasticsearch
   create_resources('elasticsearch::instance', $instances)

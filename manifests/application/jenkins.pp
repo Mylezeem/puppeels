@@ -19,7 +19,6 @@ class profile::application::jenkins (
   $extra_packages = {},
 ) {
 
-  include profile::base
   include profile::webserver::tomcat
 
   $war_source = "http://mirrors.jenkins-ci.org/${branch}/${version}/jenkins.war"

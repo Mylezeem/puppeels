@@ -20,8 +20,6 @@ class profile::application::puppet_master (
   $user_configuration   = {},
 ) {
 
-  include profile::base
-
   if $passenger_enable {
     include ::profile::webserver::apache
   }

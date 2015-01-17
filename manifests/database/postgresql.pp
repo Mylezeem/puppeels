@@ -24,8 +24,6 @@ class profile::database::postgresql (
   $tablespaces     = {},
 ) {
 
-  include profile::base
-
   include ::postgresqlrepo
   include ::postgresql::globals
   include ::postgresql::server

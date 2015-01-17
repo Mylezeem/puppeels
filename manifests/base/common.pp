@@ -7,7 +7,7 @@
 #   mod 'saz/sudo'
 #   mod 'puppetlabs/ntp'
 #
-class profile::base::base (
+class profile::base::common (
   $manage_augeasproviders  = true,
   $manage_epel             = true,
   $manage_accounts         = true,
@@ -18,18 +18,18 @@ class profile::base::base (
   $manage_sudo             = true,
   $manage_authconfig       = true,
   $manage_firewall         = true,
-  $base_packages           = [],
-  $package_ensure          = 'installed',
-  $base_classes            = [],
+  $common_packages         = [],
+  $common_packages_ensure  = 'installed',
+  $common_classes          = [],
 ) {
-  include $base_classes
+  include $common_classes
 
   if $manage_augeasproviders {
     include ::augeasproviders
   }
 
   if $manage_accounts {
-    include profile::base::accounts
+    include account::accounts
   }
 
   if $manage_epel {
@@ -65,9 +65,9 @@ class profile::base::base (
     include ::firewall
   }
 
-  if $base_packages {
-    package { $base_packages:
-      ensure => $package_ensure
+  if $common_packages {
+    package { $common_packages:
+      ensure => $common_packages_ensure
     }
   }
 

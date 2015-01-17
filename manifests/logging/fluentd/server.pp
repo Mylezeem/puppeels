@@ -9,7 +9,6 @@
 class profile::logging::fluentd::server (
 ) {
 
-  include profile::base
   include profile::logging::agent::fluentd
   include ::java
   include ::elasticsearch

@@ -38,7 +38,6 @@ class profile::monitoring::sensu::server (
 
   if size($rabbitmq_user_realized) >= 1 {
 
-    include profile::base
     include profile::monitoring::agent::sensu
 
     if $manage_redis {

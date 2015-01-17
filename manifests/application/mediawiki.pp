@@ -11,7 +11,6 @@ class profile::application::mediawiki (
   $wikis  = {},
 ) {
 
-  include profile::base
   create_resources('mediawiki::wiki', $wikis)
 
 }
