@@ -29,6 +29,11 @@ mod 'postgresql',
   :ref => 'pg_hba_rules'
 
 #
+# profile::database::mongodb
+#
+mod 'puppetlabs/mongodb'
+
+#
 # profile::logging::agent::fluentd
 #
 mod 'srf/fluentd'

@@ -24,6 +24,7 @@ A set of example on how to use those profiles is availabe on the [puppeels-examp
 
 * [MariaDB](http://mariadb.org)
 * [PostgreSQL](http://www.postgresql.org)
+* [MongoDB](http://www.mongodb.org)
 * [Redis](http://redis.io)
 
 #### Webserver
