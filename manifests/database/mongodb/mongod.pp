@@ -6,9 +6,10 @@
 #   * puppetlabs/mongodb
 #
 class profile::database::mongodb::mongod (
-  $replsets  = {},
-  $users     = {},
-  $databases = {},
+  $manage_mongodb_client = true,
+  $replsets              = {},
+  $users                 = {},
+  $databases             = {},
 ) {
 
   include ::mongodb::globals
@@ -16,5 +17,10 @@ class profile::database::mongodb::mongod (
   create_resources('mongodb_replset', $replsets)
   create_resources('mongodb_user', $users)
   create_resources('mongodb_database', $databases)
+
+  if $manage_mongodb_client {
+    include ::mongodb::client
+  }
+
 }
 
