@@ -6,21 +6,22 @@
 #   mod 'saz/ssh'
 #   mod 'saz/sudo'
 #   mod 'puppetlabs/ntp'
+#   mod 'stahnma/epel'
 #
 class profile::base::common (
-  $manage_augeasproviders  = true,
-  $manage_epel             = true,
-  $manage_accounts         = true,
-  $manage_logging          = 'fluentd',
-  $manage_monitoring       = 'sensu',
-  $manage_sshd             = true,
-  $manage_ntp              = true,
-  $manage_sudo             = true,
-  $manage_authconfig       = true,
-  $manage_firewall         = true,
-  $common_packages         = [],
-  $common_packages_ensure  = 'installed',
-  $common_classes          = [],
+  $manage_augeasproviders = false,
+  $manage_epel            = false,
+  $manage_accounts        = false,
+  $manage_logging         = undef,
+  $manage_monitoring      = undef,
+  $manage_sshd            = false,
+  $manage_ntp             = false,
+  $manage_sudo            = false,
+  $manage_authconfig      = false,
+  $manage_firewall        = false,
+  $common_packages        = [],
+  $common_packages_ensure = 'installed',
+  $common_classes         = [],
 ) {
   include $common_classes
 
@@ -29,11 +30,11 @@ class profile::base::common (
   }
 
   if $manage_accounts {
-    include account::accounts
+    include ::account::accounts
   }
 
   if $manage_epel {
-    include epel
+    include ::epel
   }
 
   if $manage_logging {
