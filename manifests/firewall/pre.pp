@@ -27,25 +27,25 @@ class profile::firewall::pre(
   include firewall
 
   # defaults 'pre' rules
-  cloud::firewall::rule{ '000 accept related established rules':
+  profile::firewall::rule{ '000 accept related established rules':
     proto  => 'all',
     state  => ['RELATED', 'ESTABLISHED'],
     extras => $firewall_settings,
   }
 
-  cloud::firewall::rule{ '001 accept all icmp':
+  profile::firewall::rule{ '001 accept all icmp':
     proto  => 'icmp',
     extras => $firewall_settings,
   }
 
-  cloud::firewall::rule{ '002 accept all to lo interface':
+  profile::firewall::rule{ '002 accept all to lo interface':
     proto   => 'all',
     iniface => 'lo',
     extras  => $firewall_settings,
   }
 
   if $manage_ssh {
-    cloud::firewall::rule{ '003 accept ssh':
+    profile::firewall::rule{ '003 accept ssh':
       port   => '22',
       extras => $firewall_settings,
     }

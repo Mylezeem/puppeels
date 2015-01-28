@@ -26,7 +26,7 @@ class profile::firewall::post(
       proto => 'all',
       jump  => 'LOG',
     }
-    cloud::firewall::rule{ '999 drop all':
+    profile::firewall::rule{ '999 drop all':
       proto  => 'all',
       action => 'drop',
       extras => $firewall_settings,
