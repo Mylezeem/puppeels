@@ -9,7 +9,7 @@ class profile::openstack::database::sql (
 ) {
 
   if $database in ['mariadb', 'postgresql'] {
-    include profile::database::$database
+    include "profile::database::${database}"
   } else {
     fail('invalid database backend selected: choose from mariadb or postgresql')
   }
