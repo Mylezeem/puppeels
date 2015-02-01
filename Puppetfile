@@ -158,6 +158,7 @@ mod 'puppetlabs/stdlib'
 mod 'puppetlabs/concat'
 mod 'nanliu/staging'
 mod 'puppetlabs/tomcat'
+mod 'opentable/jenkins_job_builder'
 
 #
 # profile::application::puppetdb_server
@@ -188,5 +189,4 @@ mod 'puppetlabs/xinetd'
 mod 'zack/r10k'
 mod 'puppetlabs/ruby'
 mod 'puppetlabs/gcc'
-mod 'mhuffnagle/make'
 mod 'gentoo/portage'

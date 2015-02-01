@@ -10,6 +10,7 @@
 #   mod 'puppetlabs/concat'
 #   mod 'nanliu/staging'
 #   mod 'puppetlabs/tomcat'
+#   mod 'opentable/jenkins_job_builder'
 #
 class profile::application::jenkins (
   $install_jjb    = false,
