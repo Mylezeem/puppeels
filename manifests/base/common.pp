@@ -3,10 +3,28 @@
 # License: ApacheV2
 #
 # Puppet module :
-#   mod 'saz/ssh'
-#   mod 'saz/sudo'
-#   mod 'puppetlabs/ntp'
+#   mod 'puppetlabs/stdlib'
+#   mod 'herculesteam/augeasproviders'
+#   mod 'herculesteam/augeasproviders_apache'
+#   mod 'herculesteam/augeasproviders_base'
+#   mod 'herculesteam/augeasproviders_grub'
+#   mod 'herculesteam/augeasproviders_mounttab'
+#   mod 'herculesteam/augeasproviders_nagios'
+#   mod 'herculesteam/augeasproviders_pam'
+#   mod 'herculesteam/augeasproviders_postgresql'
+#   mod 'herculesteam/augeasproviders_puppet'
+#   mod 'herculesteam/augeasproviders_shellvar'
+#   mod 'herculesteam/augeasproviders_ssh'
+#   mod 'herculesteam/augeasproviders_sysctl'
+#   mod 'herculesteam/augeasproviders_syslog'
 #   mod 'stahnma/epel'
+#   mod 'account',
+#     :git => 'https://github.com/Mylezeem/puppet-account.git',
+#     :ref => 'multiple_accounts'
+#   mod 'puppetlabs/ntp'
+#   mod 'saz/sudo'
+#   mod 'saz/ssh'
+#   mod 'yguenane/authconfig'
 #
 class profile::base::common (
   $manage_augeasproviders = false,

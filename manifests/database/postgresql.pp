@@ -3,8 +3,11 @@
 # License: ApacheV2
 #
 # Puppet module :
-#   * yguenane/postgresqlrepo
-#   * puppetlabs/postgresql
+#   mod 'puppetlabs/stdlib'
+#   mod 'puppetlabs/concat'
+#   mod 'puppetlabs/apt'
+#   mod 'yguenane/postgresqlrepo'
+#   mod 'puppetlabs/postgresql'
 #
 class profile::database::postgresql (
   $contrib_enable  = true,

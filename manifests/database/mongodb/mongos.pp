@@ -3,7 +3,9 @@
 # License: ApacheV2
 #
 # Puppet module :
-#   * puppetlabs/mongodb
+#   mod 'puppetlabs/stdlib'
+#   mod 'puppetlabs/apt'
+#   mod 'puppetlabs/mongodb'
 #
 class profile::database::mongodb::mongos (
   $manage_mongodb_client = true,

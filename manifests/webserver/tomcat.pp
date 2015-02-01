@@ -3,9 +3,12 @@
 # License: ApacheV2
 #
 # Puppet module :
-#   * puppetlabs/tomcat
-#   * puppetlabs/java
-#   * yguenane/jpackage
+#   mod 'yguenane/jpackage'
+#   mod 'puppetlabs/java'
+#   mod 'puppetlabs/stdlib'
+#   mod 'puppetlabs/concat'
+#   mod 'nanliu/staging'
+#   mod 'puppetlabs/tomcat'
 #
 class profile::webserver::tomcat (
   $install_jpackage  = false,

@@ -3,8 +3,10 @@
 # License: ApacheV2
 #
 # Puppet module :
-#   * yguenane/mariadbrepo
-#   * puppetlabs/mysql
+#   mod 'yguenane/mariadbrepo'
+#   mod 'puppetlabs/mysql'
+#   mod 'nanliu/staging'
+#   mod 'puppetlabs/stdlib
 #
 class profile::database::mariadb (
   $client_enabled  = true,

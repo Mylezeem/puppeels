@@ -3,7 +3,8 @@
 # License: ApacheV2
 #
 # Puppet module :
-#   * thomasvandoren/redis
+#   mod 'maestrodev/wget'
+#   mod' puppetlabs/gcc'
 #
 class profile::database::redis (
   $instances = {},

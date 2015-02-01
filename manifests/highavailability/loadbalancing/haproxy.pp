@@ -4,7 +4,8 @@
 #
 # Puppet module :
 #   mod 'puppetlabs/haproxy'
-#   mod 'arioch/keepalived'
+#   mod 'puppetlabs/stdlib'
+#   mod 'puppetlabs/concat'
 #
 class profile::highavailability::loadbalancing::haproxy (
   $haproxy_listens           = {},

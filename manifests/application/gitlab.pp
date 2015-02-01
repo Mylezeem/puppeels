@@ -4,6 +4,9 @@
 #
 # Puppet module :
 #   mod 'sbadia/gitlab'
+#   mod 'puppetlabs/stdlib'
+#   mod 'puppetlabs/vcsrepo'
+#   mod 'puppetlabs/git'
 #
 class profile::application::gitlab (
   $manage_redis = true,

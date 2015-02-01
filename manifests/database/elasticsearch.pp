@@ -3,7 +3,8 @@
 # License: ApacheV2
 #
 # Puppet module :
-#   * elasticsearch/elasticsearch
+#   mod 'puppetlabs/java'
+#   mod 'elasticsearch/elasticsearch'
 #
 class profile::database::elasticsearch::server (
   $instances = {}

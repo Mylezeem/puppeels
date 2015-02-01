@@ -3,10 +3,13 @@
 # License: ApacheV2
 #
 # Puppet module :
-#   mod 'rtyler/jenkins'
 #   mod 'puppetlabs/java'
 #   mod 'puppetlabs/apt'
-#   mod 'darin/zypprepo'
+#   mod 'yguenane/jpackage'
+#   mod 'puppetlabs/stdlib'
+#   mod 'puppetlabs/concat'
+#   mod 'nanliu/staging'
+#   mod 'puppetlabs/tomcat'
 #
 class profile::application::jenkins (
   $install_jjb    = false,

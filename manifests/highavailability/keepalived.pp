@@ -3,6 +3,8 @@
 # License: ApacheV2
 #
 # Puppet module :
+#   mod 'puppetlabs/stdlib'
+#   mod 'puppetlabs/concat'
 #   mod 'arioch/keepalived'
 #
 class profile::highavailability::keepalived (

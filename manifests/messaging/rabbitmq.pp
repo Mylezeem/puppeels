@@ -3,7 +3,10 @@
 # License: ApacheV2
 #
 # Puppet module :
-#   * puppetlabs/rabbitmq
+#   mod 'puppetlabs/stdlib'
+#   mod 'puppetlabs/apt'
+#   mod 'nanliu/staging'
+#   mod 'puppetlabs/rabbitmq
 #
 class profile::messaging::rabbitmq (
   $users            = {},

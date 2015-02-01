@@ -3,7 +3,11 @@
 # License: ApacheV2
 #
 # Puppet module :
-#   * puppetlabs/puppetdb
+#   mod 'puppetlabs/puppetdb'
+#   mod 'puppetlabs/inifile'
+#   mod 'puppetlabs/postgresql'
+#   mod 'puppetlabs/firewall'
+#   mod 'puppetlabs/stdlib
 #
 class profile::application::puppetdb_server {
 

@@ -2,67 +2,171 @@
 # Forge
 #
 
+mod 'profile',
+  :git => 'https://github.com/Mylezeem/puppeels.git',
+  :ref => 'master'
+
 #
 # profile::base
 #
+mod 'puppetlabs/stdlib'
+mod 'herculesteam/augeasproviders'
+mod 'herculesteam/augeasproviders_apache'
+mod 'herculesteam/augeasproviders_base'
+mod 'herculesteam/augeasproviders_grub'
+mod 'herculesteam/augeasproviders_mounttab'
+mod 'herculesteam/augeasproviders_nagios'
+mod 'herculesteam/augeasproviders_pam'
+mod 'herculesteam/augeasproviders_postgresql'
+mod 'herculesteam/augeasproviders_puppet'
+mod 'herculesteam/augeasproviders_shellvar'
+mod 'herculesteam/augeasproviders_ssh'
+mod 'herculesteam/augeasproviders_sysctl'
+mod 'herculesteam/augeasproviders_syslog'
+
 mod 'stahnma/epel'
-mod 'puppetlabs/ntp'
-mod 'saz/sudo'
-mod 'saz/ssh'
 
 mod 'account',
   :git => 'https://github.com/Mylezeem/puppet-account.git',
   :ref => 'multiple_accounts'
 
+mod 'puppetlabs/ntp'
+mod 'saz/sudo'
+mod 'saz/ssh'
+mod 'yguenane/authconfig'
+
+#
+# profile::database::mariadb
+#
+mod 'yguenane/mariadbrepo'
+mod 'puppetlabs/mysql'
+mod 'nanliu/staging'
+mod 'puppetlabs/stdlib'
+
 #
 # profile::database::postgresql
 #
-#mod 'yguenane/postgresqlrepo'
-#mod 'puppetlabs/postgresql'
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/apt'
+mod 'puppetlabs/concat'
+mod 'yguenane/postgresqlrepo'
+mod 'puppetlabs/postgresql'
 
-mod 'postgresqlrepo',
-  :git => 'https://github.com/Mylezeem/puppet-postgresqlrepo.git',
-  :ref => 'master'
-
-mod 'postgresql',
-  :git => 'https://github.com/Mylezeem/puppetlabs-postgresql.git',
-  :ref => 'pg_hba_rules'
+#
+# profile::database::redis
+#
+mod 'maestrodev/wget'
+mod 'puppetlabs/gcc'
+mod 'thomasvandoren/redis'
 
 #
 # profile::database::mongodb
 #
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/apt'
 mod 'puppetlabs/mongodb'
 
 #
-# profile::logging::agent::fluentd
-#
-mod 'srf/fluentd'
-
-#
-# profile::logging::server::fluentd
+# profile::database::elasticsearch
 #
 mod 'puppetlabs/java'
 mod 'elasticsearch/elasticsearch'
-mod 'kibana3',
-  :git => 'https://github.com/thejandroman/kibana3.git',
-  :ref => 'master'
 
 #
-# profile::monitoring::agent::sernsu
+# profile::highavailability::loadbalancing::haproxy
+#
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/concat'
+mod 'puppetlabs/haproxy'
+
+#
+# profile::highavailability::keepalived
+#
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/concat'
+mod 'arioch/keepalived'
+
+#
+# profile::messaging::rabbitmq
+#
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/apt'
+mod 'nanliu/staging'
+mod 'puppetlabs/rabbitmq'
+
+#
+# profile::webserver::apache
+#
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/concat'
+mod 'puppetlabs/apache'
+
+#
+# profile::webserver::tomcat
+#
+mod 'yguenane/jpackage'
+mod 'puppetlabs/java'
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/concat'
+mod 'nanliu/staging'
+mod 'puppetlabs/tomcat'
+
+#
+# profile::monitoring::sensu
 #
 mod 'sensu/sensu'
-
-#
-# profile::monitoring::agent::sernsu
-#
-mod 'puppetlabs/rabbitmq'
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/concat'
+mod 'puppetlabs/apache'
+mod 'maestrodev/wget'
+mod 'puppetlabs/gcc'
 mod 'thomasvandoren/redis'
+mod 'puppetlabs/apt'
+mod 'nanliu/staging'
+mod 'puppetlabs/rabbitmq'
+mod 'richardc/datacat'
+mod 'richardc/datacat'
+mod 'pauloconnor/uchiwa'
 
 #
-# profile::highavailability::haproxy
+# profile::logging::fluentd
 #
-mod 'puppetlabs/haproxy'
-mod 'arioch/keepalived'
+mod 'srf/fluentd'
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/concat'
+mod 'puppetlabs/apt'
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/concat'
+mod 'puppetlabs/apache'
+mod 'thejandroman/kibana3'
+
+#
+# profile::application::gitlab
+#
+mod 'sbadia/gitlab'
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/vcsrepo'
+mod 'puppetlabs/git'
+
+#
+# profile::application::jenkins
+#
+mod 'puppetlabs/java'
+mod 'puppetlabs/apt'
+mod 'yguenane/jpackage'
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/concat'
+mod 'nanliu/staging'
+mod 'puppetlabs/tomcat'
+
+#
+# profile::application::puppetdb_server
+#
+mod 'puppetlabs/puppetdb'
+mod 'puppetlabs/inifile'
+mod 'puppetlabs/postgresql'
+mod 'puppetlabs/firewall'
+mod 'puppetlabs/stdlib'
 
 #
 # profile::application::foreman
@@ -75,40 +179,14 @@ mod 'theforeman/dns'
 mod 'theforeman/dhcp'
 mod 'theforeman/foreman_proxy'
 
-#
-# profile::webserver::apache
-#
-mod 'puppetlabs/apache'
 
 #
-# profile::webserver::tomcat
+# Uncategorized (yet)
 #
-mod 'puppetlabs/java'
-mod 'puppetlabs/tomcat'
-mod 'yguenane/jpackage'
-
 mod 'domcleal/augeasproviders'
-mod 'puppetlabs/stdlib'
-mod 'puppetlabs/concat'
 mod 'puppetlabs/xinetd'
-mod 'puppetlabs/apt'
-mod 'puppetlabs/firewall'
-mod 'puppetlabs/inifile'
 mod 'zack/r10k'
 mod 'puppetlabs/ruby'
 mod 'puppetlabs/gcc'
 mod 'mhuffnagle/make'
-mod 'puppetlabs/vcsrepo'
-mod 'puppetlabs/git'
 mod 'gentoo/portage'
-mod 'maestrodev/wget'
-mod 'nanliu/staging'
-
-mod 'profile',
-  :git => 'https://github.com/Mylezeem/puppeels.git',
-  :ref => 'master'
-
-mod 'puppetdb',
-  :git => 'https://github.com/puppetlabs/puppetlabs-puppetdb.git',
-  :ref => 'master'
-

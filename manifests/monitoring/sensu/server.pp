@@ -4,9 +4,18 @@
 #
 # Puppet module :
 #   mod 'sensu/sensu'
+#   mod 'puppetlabs/stdlib'
+#   mod 'puppetlabs/concat'
 #   mod 'puppetlabs/apache'
-#   mod 'puppetlabs/rabbitmq'
+#   mod 'maestrodev/wget'
+#   mod 'puppetlabs/gcc'
 #   mod 'thomasvandoren/redis'
+#   mod 'puppetlabs/apt'
+#   mod 'nanliu/staging'
+#   mod 'puppetlabs/rabbitmq'
+#   mod 'richardc/datacat'
+#   mod 'richardc/datacat'
+#   mod 'pauloconnor/uchiwa'
 #
 class profile::monitoring::sensu::server (
   $checks                    = {},

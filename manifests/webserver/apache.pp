@@ -3,7 +3,9 @@
 # License: ApacheV2
 #
 # Puppet module :
-#   * puppetlabs/apache
+#   mod 'puppetlabs/stdlib'
+#   mod 'puppetlabs/concat'
+#   mod 'puppetlabs/apache'
 #
 class profile::webserver::apache (
   $dev_enable       = false,
