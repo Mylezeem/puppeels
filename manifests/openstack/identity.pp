@@ -44,9 +44,13 @@ class profile::openstack::identity (
     include ::trove::keystone::auth
   }
 
-  if $firewall_enabled {
+  if $manage_firewall {
     profile::firewall::rule { '228 keystone accept tcp':
       port   => 5000,
+      extras => $firewall_extras
+    }
+    profile::firewall::rule { '229 keystone-admin accept tcp':
+      port   => 35357,
       extras => $firewall_extras
     }
   }

@@ -14,7 +14,7 @@ class profile::base::common (
   $manage_accounts        = false,
   $manage_logging         = undef,
   $manage_monitoring      = undef,
-  $manage_sshd            = false,
+  $manage_ssh             = false,
   $manage_ntp             = false,
   $manage_sudo            = false,
   $manage_authconfig      = false,
@@ -45,7 +45,8 @@ class profile::base::common (
     include "profile::monitoring::${manage_monitoring}::agent"
   }
 
-  if $manage_sshd {
+  if $manage_ssh {
+    include ::ssh::client
     include ::ssh::server
   }
 
@@ -64,6 +65,8 @@ class profile::base::common (
 
   if $manage_firewall {
     include ::firewall
+    include ::profile::firewall::pre
+    include ::profile::firewall::post
   }
 
   if $common_packages {

@@ -12,12 +12,12 @@ class profile::openstack::compute::api(
     }
 
     profile::firewall::rule { '220 nova-api-ec2 accept tcp':
-      port   => 8774,
+      port   => 8773,
       extras => $firewall_extras
     }
 
     profile::firewall::rule { '220 nova-api-metadata accept tcp':
-      port   => 8774,
+      port   => 8775,
       extras => $firewall_extras
     }
   }
