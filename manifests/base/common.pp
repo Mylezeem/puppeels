@@ -44,7 +44,7 @@ class profile::base::common (
   include $common_classes
 
   if $manage_augeasproviders {
-    include ::augeasproviders
+    include ::augeasproviders::instances
   }
 
   if $manage_accounts {
