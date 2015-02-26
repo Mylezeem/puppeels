@@ -184,7 +184,6 @@ mod 'theforeman/foreman_proxy'
 #
 # Uncategorized (yet)
 #
-mod 'domcleal/augeasproviders'
 mod 'puppetlabs/xinetd'
 mod 'zack/r10k'
 mod 'puppetlabs/ruby'
