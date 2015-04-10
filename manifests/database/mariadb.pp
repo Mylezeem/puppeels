@@ -9,6 +9,11 @@
 #   mod 'puppetlabs/stdlib
 #
 class profile::database::mariadb (
+  $dbs             = {},
+  $databases       = {},
+  $users           = {},
+  $grants          = {},
+  $plugins         = {},
   $client_enabled  = true,
   $manage_repo     = true,
   $manage_firewall = true,
@@ -20,6 +25,10 @@ class profile::database::mariadb (
   }
 
   include ::mysql::server
+  create_resources('mysql::db', $dbs)
+  create_resources('mysql_database', $databases)
+  create_resources('mysql_user', $users)
+  create_resources('mysql_grant', $grants)
 
   if $client_enabled {
     include ::mysql::client
