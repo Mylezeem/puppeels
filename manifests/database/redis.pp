@@ -7,9 +7,12 @@
 #   mod' puppetlabs/gcc'
 #
 class profile::database::redis (
-  $instances = {},
+  $manage_sentinel = false,
 ) {
 
   include ::redis
-  create_resources('redis::instance', $instances)
+
+  if $manage_sentinel {
+    include ::redis::sentinel
+  }
 }

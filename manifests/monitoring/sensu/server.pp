@@ -49,15 +49,10 @@ class profile::monitoring::sensu::server (
 
     include profile::monitoring::agent::sensu
 
-    if $manage_redis {
-      include profile::database::redis
-      Service['redis-6379'] -> Service['sensu-api'] -> Service['sensu-server']
-    }
-
-    if $manage_rabbitmq {
-      include profile::messaging::rabbitmq
-      Service['rabbitmq-server'] -> Class['sensu::package']
-    }
+  if $manage_redis {
+    include profile::database::redis
+    Service['redis'] -> Service['sensu-api'] -> Service['sensu-server']
+  }
 
     if $proxy_dashboard {
       include profile::webserver::apache

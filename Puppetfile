@@ -55,9 +55,9 @@ mod 'puppetlabs/postgresql'
 #
 # profile::database::redis
 #
-mod 'maestrodev/wget'
-mod 'puppetlabs/gcc'
-mod 'thomasvandoren/redis'
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/apt'
+mod 'arioch/redis'
 
 #
 # profile::database::mongodb
@@ -118,13 +118,10 @@ mod 'sensu/sensu'
 mod 'puppetlabs/stdlib'
 mod 'puppetlabs/concat'
 mod 'puppetlabs/apache'
-mod 'maestrodev/wget'
-mod 'puppetlabs/gcc'
-mod 'thomasvandoren/redis'
+mod 'arioch/redis'
 mod 'puppetlabs/apt'
 mod 'nanliu/staging'
 mod 'puppetlabs/rabbitmq'
-mod 'richardc/datacat'
 mod 'richardc/datacat'
 mod 'pauloconnor/uchiwa'
 
