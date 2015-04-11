@@ -45,9 +45,7 @@ class profile::monitoring::sensu::server (
 
   $rabbitmq_user_realized = query_nodes("Rabbitmq_user['${rabbitmq_user}']")
 
-  if size($rabbitmq_user_realized) >= 1 {
-
-    include profile::monitoring::agent::sensu
+  include profile::monitoring::sensu::agent
 
   if $manage_redis {
     include profile::database::redis
