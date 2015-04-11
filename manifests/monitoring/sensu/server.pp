@@ -18,9 +18,7 @@
 #   mod 'pauloconnor/uchiwa'
 #
 class profile::monitoring::sensu::server (
-  $checks                    = {},
   $handlers                  = {},
-  $plugins                   = {},
   $rabbitmq_user             = 'sensu',
   $rabbitmq_password         = 'rabbitpassword',
   $rabbitmq_vhost            = '/sensu',
@@ -31,19 +29,7 @@ class profile::monitoring::sensu::server (
   $manage_redis              = true,
 ) {
 
-  @@rabbitmq_user { $rabbitmq_user :
-    password => $rabbitmq_password,
-  }
-  @@rabbitmq_vhost { $rabbitmq_vhost :
-    ensure  => present,
-  }
-  @@rabbitmq_user_permissions { "${rabbitmq_user}@${rabbitmq_vhost}" :
-    configure_permission => '.*',
-    read_permission      => '.*',
-    write_permission     => '.*',
-  }
-
-  $rabbitmq_user_realized = query_nodes("Rabbitmq_user['${rabbitmq_user}']")
+  Class['sensu'] -> Class['uchiwa']
 
   include profile::monitoring::sensu::agent
 
@@ -52,21 +38,19 @@ class profile::monitoring::sensu::server (
     Service['redis'] -> Service['sensu-api'] -> Service['sensu-server']
   }
 
-    if $proxy_dashboard {
-      include profile::webserver::apache
-      create_resources('apache::vhost', $vhost_configuration)
-    }
-
-    create_resources('sensu::check', $checks)
-    create_resources('sensu::handler', $handlers)
-    create_resources('@@sensu::plugin', $plugins)
-
-    include ::uchiwa
-    uchiwa::api { 'Uchiwa' :
-      host => $uchiwa_ip,
-    }
-
+  if $manage_rabbitmq {
+    include profile::messaging::rabbitmq
+    Service['rabbitmq-server'] -> Class['sensu::package']
   }
+
+  if $proxy_dashboard {
+    include profile::webserver::apache
+    create_resources('apache::vhost', $vhost_configuration)
+  }
+
+  create_resources('sensu::handler', $handlers)
+
+  include ::uchiwa
 
 }
 
