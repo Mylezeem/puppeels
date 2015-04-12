@@ -31,20 +31,20 @@ class profile::monitoring::sensu::server (
 
   Class['sensu'] -> Class['uchiwa']
 
-  include profile::monitoring::sensu::agent
+  include ::profile::monitoring::sensu::agent
 
   if $manage_redis {
-    include profile::database::redis
+    include ::profile::database::redis
     Service['redis'] -> Service['sensu-api'] -> Service['sensu-server']
   }
 
   if $manage_rabbitmq {
-    include profile::messaging::rabbitmq
+    include ::profile::messaging::rabbitmq
     Service['rabbitmq-server'] -> Class['sensu::package']
   }
 
   if $proxy_dashboard {
-    include profile::webserver::apache
+    include ::profile::webserver::apache
     create_resources('apache::vhost', $vhost_configuration)
   }
 

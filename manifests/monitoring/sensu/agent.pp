@@ -9,6 +9,9 @@ class profile::monitoring::sensu::agent (
   $plugins = {},
   $checks  = {},
 ) {
+
+  Class['sensu'] -> Sensu::Plugin <||>
+
   include ::sensu
 
   create_resources('::sensu::plugin', $plugins)
