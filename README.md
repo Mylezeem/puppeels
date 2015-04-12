@@ -32,6 +32,10 @@ A set of example on how to use those profiles is availabe on the [puppeels-examp
 * [Apache](http://httpd.apache.org)
 * [Tomcat](http://tomcat.apache.org)
 
+#### Mailserver
+
+* [Postfix](http://www.postfix.org)
+
 #### Messaging
 
 * [RabbitMQ](http://www.rabbitmq.com)

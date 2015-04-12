@@ -177,6 +177,12 @@ mod 'theforeman/dns'
 mod 'theforeman/dhcp'
 mod 'theforeman/foreman_proxy'
 
+#
+# profile::mailserver::postfix
+#
+mod 'camptocamp/augeas'
+mod 'camptocamp/postfix'
+mod 'puppetlabs/stdlib'
 
 #
 # Uncategorized (yet)

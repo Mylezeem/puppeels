@@ -25,6 +25,7 @@
 #   mod 'saz/sudo'
 #   mod 'saz/ssh'
 #   mod 'yguenane/authconfig'
+#   mod 'camptocamp/postfix'
 #
 class profile::base::common (
   $manage_augeasproviders = false,
@@ -32,6 +33,7 @@ class profile::base::common (
   $manage_accounts        = false,
   $manage_logging         = undef,
   $manage_monitoring      = undef,
+  $manage_smtp            = undef,
   $manage_ssh             = false,
   $manage_ntp             = false,
   $manage_sudo            = false,
@@ -56,11 +58,15 @@ class profile::base::common (
   }
 
   if $manage_logging {
-    include "profile::logging::${manage_logging}::agent"
+    include "::profile::logging::${manage_logging}::agent"
   }
 
   if $manage_monitoring {
-    include "profile::monitoring::${manage_monitoring}::agent"
+    include "::profile::monitoring::${manage_monitoring}::agent"
+  }
+
+  if $manage_smtp {
+    include "::profile::mailserver::${manage_smtp}"
   }
 
   if $manage_ssh {
